@@ -139,6 +139,9 @@ class ImageEditor(FileEditor, WideEditor):
     def set_enabled(self, editable=True):
         self.clear_button.setEnabled(editable)
         self.open_button.setEnabled(editable)
+        paste_button = self.findChild(QtGui.QWidget, 'paste')
+        if paste_button:
+            paste_button.setEnabled(editable)
         self.label.setEnabled(editable)
 
     def set_pixmap(self, pixmap):
