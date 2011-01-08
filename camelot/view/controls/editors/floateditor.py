@@ -61,7 +61,7 @@ class FloatEditor(CustomEditor):
 
         self.spinBox.setRange(minimum, maximum)
         self.spinBox.setDecimals(precision)
-        self.spinBox.setAlignment(Qt.AlignRight|Qt.AlignVCenter)
+        self.spinBox.setAlignment(Qt.AlignRight|Qt.AlignVCenter)
 
         self.spinBox.addAction(action)
         self.calculatorButton = QtGui.QToolButton()

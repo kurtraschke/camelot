@@ -22,7 +22,7 @@
 #
 #  ============================================================================
 
-import elixir
+import elixir
 from sqlalchemy import MetaData
 
 # begin session setup

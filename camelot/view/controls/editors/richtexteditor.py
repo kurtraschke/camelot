@@ -240,7 +240,7 @@ class RichTextEditor(CustomEditor, WideEditor):
         else:
             self.textedit.setFocus(Qt.OtherFocusReason)
             self.textedit.setFontUnderline(False)
-
+
     def set_alignleft(self, bool):
         if bool:
             self.textedit.setFocus(Qt.OtherFocusReason)
