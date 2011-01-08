@@ -37,9 +37,11 @@ class LabelEditor(QtGui.QLabel, AbstractCustomEditor):
         AbstractCustomEditor.__init__(self)
         # do not set disabled, it is quite pointless for LabelEditor
         #self.setEnabled(False)
+        self.setOpenExternalLinks(True)
         self.text = text
 
     def set_value(self, value):
+        self.setEnabled(True)
         value = AbstractCustomEditor.set_value(self, value)
         if value:
             self.setText(value)
