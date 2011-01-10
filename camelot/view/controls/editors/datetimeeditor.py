@@ -68,6 +68,8 @@ class DateTimeEditor(CustomEditor):
                     return (QtGui.QValidator.Invalid, pos)
                 if not int(parts[1]) in range(0,60):
                     return (QtGui.QValidator.Invalid, pos)
+                if not int(parts[2]) in range(0,60):
+                    return (QtGui.QValidator.Invalid, pos)
                 return (QtGui.QValidator.Acceptable, pos)
         
         self.timeedit = QtGui.QComboBox(self)
@@ -76,7 +78,8 @@ class DateTimeEditor(CustomEditor):
             self.timeedit.setEnabled(False)
         
         time_entries = [entry
-                        for entry in itertools.chain(*(('%02i:00'%i, '%02i:30'%i)
+                        for entry in itertools.chain(*(('%02i:00:00'%i,
+                                                        '%02i:30:00'%i)
                         for i in range(0,24)))]
         self.timeedit.addItems(time_entries)
         self.timeedit.setValidator(TimeValidator(self))
@@ -132,20 +135,22 @@ class DateTimeEditor(CustomEditor):
         value = CustomEditor.set_value(self, value)
         if value:
             self.dateedit.setDate(QtCore.QDate(value.year, value.month, value.day))
-            self.timeedit.lineEdit().setText('%02i:%02i'%(value.hour, value.minute))
+            self.timeedit.lineEdit().setText('%02i:%02i:%02i'%(value.hour,
+                                                               value.minute,
+                                                               value.second))
         else:
             self.dateedit.setDate(self.dateedit.minimumDate())
-            self.timeedit.lineEdit().setText('--:--')
+            self.timeedit.lineEdit().setText('--:--:--')
       
     def date(self):
         return self.dateedit.date()
     
     def time(self):
         text = str(self.timeedit.currentText())
-        if text=='--:--':
+        if text=='--:--:--':
             return None
         parts = text.split(':')
-        return QtCore.QTime(int(parts[0]), int(parts[1]))
+        return QtCore.QTime(int(parts[0]), int(parts[1]), int(parts[2]))
       
     def set_enabled(self, editable=True):
         self.timeedit.setEnabled(editable)
