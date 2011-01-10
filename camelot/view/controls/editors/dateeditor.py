@@ -29,12 +29,10 @@ from PyQt4 import QtCore
 from PyQt4.QtCore import Qt
 
 from customeditor import CustomEditor
-from camelot.core import constants
 from camelot.view.art import Icon
 from camelot.view.utils import local_date_format, date_from_string, ParsingError
 from camelot.view.controls.decorated_line_edit import DecoratedLineEdit
 from camelot.core.utils import ugettext as _
-
 
 class DateEditor(CustomEditor):
     """Widget for editing date values"""
@@ -46,7 +44,6 @@ class DateEditor(CustomEditor):
                  parent=None,
                  editable=True,
                  nullable=True,
-                 format=constants.camelot_date_format,
                  **kwargs):
         CustomEditor.__init__(self, parent)
 
